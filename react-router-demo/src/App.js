@@ -1,21 +1,18 @@
-import About from './Container/About'
-import Profile from './Container/Profile'
-import { useState } from 'react';
+import About from './Container/About';
+import Profile from './Container/Profile';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+
 function App() {
-  const[state , setState] = useState('')
-  let component 
-  if (state === 'About'){
-    component = <About/>
-  }
-  else if (state === 'Profile') {
-    component = <Profile />
-  } 
+  const navigate = useNavigate();
 
   return (
     <div className="App">
-      <button onClick={ () => setState('About')}>About</button>
-      <button onClick={ () => setState('Profile')}>Profile</button>
-      {component}
+      <button onClick={() => navigate('/about')}>About</button>
+      <button onClick={() => navigate('/profile')}>Profile</button>
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
     </div>
   );
 }
